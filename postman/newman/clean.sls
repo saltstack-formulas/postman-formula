@@ -9,7 +9,7 @@ postman-newman-clean-cmd-run-brew:
     - name: brew uninstall newman
     - onlyif:
       -  test -x /usr/local/bin/brew
-      - {{ grains.os_family == 'MacOS' %}
+      - {{ grains.os_family == 'MacOS' }}
 
 postman-newman-clean-cmd-run-npm:
   cmd.run:

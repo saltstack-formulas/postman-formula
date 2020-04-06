@@ -9,7 +9,8 @@ postman-package-archive-install-extract:
   pkg.installed:
     - names:
       - curl
-      - zip
+      - tar
+      - gzip
   file.directory:
     - name: {{ postman.pkg.archive.name }}
     - user: {{ postman.rootuser }}
@@ -24,6 +25,11 @@ postman-package-archive-install-extract:
         - mode
   archive.extracted:
     {{- format_kwargs(postman.pkg.archive) }}
-    - retry:a {{ postman.retry_option }}
+    - archive_format: {{ postman.pkg.format }}
+    - retry: {{ postman.retry_option }}
     - user: {{ postman.rootuser }}
     - group: {{ postman.rootgroup }}
+       {%- if grains.kernel|lower == 'linux' %}
+    - enforce_toplevel: false
+    - options: '--strip-components=1'
+       {%- endif %}

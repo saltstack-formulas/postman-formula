@@ -5,5 +5,6 @@
 {%- from tplroot ~ "/map.jinja" import postman with context %}
 
 include:
+  - .newman.clean
   - .archive.clean
   - .config.clean

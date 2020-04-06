@@ -8,3 +8,4 @@
 include:
   - .archive
   - .config
+  - .newman

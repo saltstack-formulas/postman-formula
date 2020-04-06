@@ -17,8 +17,8 @@
 %}
 {%- set postman = salt['grains.filter_by']( {'defaults': defaults}, default='defaults', merge=_config) %}
 
-{%- if postman['pkg']['use_upstream_archive'] %}
-       {%- set uri = '%s/%s/%s'|format(postman.pkg.macapp.uri, postman.version, postman.pkg.tag) %}
+{%- if postman.pkg.use_upstream_archive %}
+       {%- set uri = '%s/%s/%s'|format(postman.pkg.archive.uri, postman.version, postman.pkg.archive.tag) %}
        {%- if grains.os_family == 'MacOS' %}
            {%- do postman.pkg.archive.update({ 'name': '/Applications', 'source': uri }) %}
        {%- else %}

@@ -17,6 +17,7 @@
 
 Windows:
   pkg:
+    format: zip
     archive:
       tag: windows64
       source_hash: EF57F0765873A31347E5CE16A28B0AB02BC28263
@@ -26,6 +27,7 @@ MacOS:
   rootgroup: {{ macos_rootgroup | d('') }}
   environ_file: /etc/defaults/postman.sh
   pkg:
+    format: zip
     archive:
       source_hash: 22374DA48D7359E2803F6AC41627980585D91F45
       tag: osx64

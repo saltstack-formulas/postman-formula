@@ -51,9 +51,7 @@ Available states
 
 *Meta-state (This is a state that includes other states)*.
 
-This installs Postman package,
-manages Postman configuration file and then
-starts the associated postman service.
+This installs Postman and Newman packages
 
 ``postman.config``
 ^^^^^^^^^^^^^^^^^^
@@ -70,13 +68,6 @@ This state will install Postman from archive.
 
 This state will install Newman using homebrew or npm.
 
-``postman.clean``
-^^^^^^^^^^^^^^^^^
-
-*Meta-state (This is a state that includes other states)*.
-
-this state will undo everything performed in the ``postman`` meta-state in reverse order.
-
 ``postman.archive.clean``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -91,6 +82,13 @@ This state will remove Newman with npm or homebrew.
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the Postman environment file.
+
+``postman.clean``
+^^^^^^^^^^^^^^^^^
+
+*Meta-state (This is a state that includes other states)*.
+
+this state will undo everything performed in the ``postman`` meta-state in reverse order.
 
 
 Testing
