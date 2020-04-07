@@ -4,7 +4,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import postman with context %}
 
-postman-cli-package-archive-clean-file-absent:
+postman-package-archive-clean-file-absent:
   file.absent:
     - names:
       - {{ postman.pkg.archive.name }}
