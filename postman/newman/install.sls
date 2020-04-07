@@ -7,6 +7,7 @@
 postman-newman-install-cmd-run-brew:
   cmd.run:
     - name: brew install newman
+    - runas: {{ postman.rootuser }}
     - onlyif:
       - test -x /usr/local/bin/brew
       - {{ grains.os_family == 'MacOS' }}
