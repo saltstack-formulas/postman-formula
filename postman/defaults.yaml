@@ -8,17 +8,21 @@ postman:
   environ_file: /etc/default/postman.sh
   environ:
     - dummy=dummy
-  config: {}
+  config:
+    path: null
   dir:
     tmp: /tmp/postman
     archive: /usr/local
   pkg:
     name: postman
+    deps:
+      - curl
+      - gzip
     use_upstream_archive: true
     format: tar
+    tag: linux64
+    uri: 'https://dl.pstmn.io/download/version'
     archive:
-      uri: 'https://dl.pstmn.io/download/version'
-      tag: linux64
       source: 'set by map.jinja'
       source_hash: E67A2B455E575C5E50BF190A2EA3379A728B05EB
       trim_output: true

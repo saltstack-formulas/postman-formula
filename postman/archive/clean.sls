@@ -7,5 +7,9 @@
 postman-package-archive-clean-file-absent:
   file.absent:
     - names:
-      - {{ postman.pkg.archive.name }}
+              {%- if grains.os == 'MacOS' %}
+      - {{ postman.config.path }}/{{ postman.pkg.archive.name }}
+              {%- else %}
+      - {{ postman.config.path }}
+              {%- endif %}
       - {{ postman.dir.tmp }}

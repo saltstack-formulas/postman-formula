@@ -7,12 +7,11 @@
 
 postman-package-archive-install-extract:
   pkg.installed:
-    - names:
-      - curl
-      - tar
-      - gzip
+    - names: {{ postman.pkg.deps|json }}
+
+        {%- if grains.os != 'MacOS' %}
   file.directory:
-    - name: {{ postman.pkg.archive.name }}
+    - name: {{ postman.config.path }}
     - user: {{ postman.rootuser }}
     - group: {{ postman.rootgroup }}
     - mode: 755
@@ -23,6 +22,8 @@ postman-package-archive-install-extract:
         - user
         - group
         - mode
+        {%- endif %}
+
   archive.extracted:
     {{- format_kwargs(postman.pkg.archive) }}
     - archive_format: {{ postman.pkg.format }}

@@ -15,11 +15,39 @@
     {%- set macos_rootgroup = salt['cmd.run']("stat -f '%Sg' /dev/console") %}
 {%- endif %}
 
+Arch:
+  pkg:
+    deps:
+      - curl
+      - gzip
+      - tar
+
+Debian:
+  pkg:
+    deps:
+      - curl
+      - gzip
+      - tar
+
+RedHat:
+  pkg:
+    deps:
+      - curl
+      - gzip
+      - tar
+
+Suse:
+  pkg:
+    deps:
+      - curl
+      - gzip
+      - tar
+
 Windows:
   pkg:
     format: zip
+    tag: windows64
     archive:
-      tag: windows64
       source_hash: EF57F0765873A31347E5CE16A28B0AB02BC28263
 
 MacOS:
@@ -28,6 +56,6 @@ MacOS:
   environ_file: /etc/defaults/postman.sh
   pkg:
     format: zip
+    tag: osx64
     archive:
       source_hash: 22374DA48D7359E2803F6AC41627980585D91F45
-      tag: osx64
