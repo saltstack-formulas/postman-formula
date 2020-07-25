@@ -18,12 +18,12 @@
 {%- set postman = salt['grains.filter_by']( {'defaults': defaults}, default='defaults', merge=_config) %}
 
 {%- if postman.pkg.use_upstream_archive %}
-       {%- set uri = '%s/%s/%s'|format(postman.pkg.archive.uri, postman.version, postman.pkg.archive.tag) %}
+       {%- set uri = '%s/%s/%s'|format(postman.pkg.uri, postman.version, postman.pkg.tag) %}
        {%- if grains.os_family == 'MacOS' %}
-           {%- do postman.pkg.archive.update({ 'name': '/Applications', 'source': uri }) %}
+           {%- do postman.config.update({'path': '/Applications' }) %},
        {%- else %}
-           {%- set dir = '%s-%s-%s'|format(postman.pkg.name, postman.version, postman.pkg.archive.tag) %}
+           {%- set dir = '%s-%s-%s'|format(postman.pkg.name, postman.version, postman.pkg.tag) %}
            {%- do postman.config.update({'path': postman.dir.archive + '/' + dir }) %},
-           {%- do postman.pkg.archive.update({ 'name': postman.dir.archive + '/' + dir, 'source': uri }) %}
        {%- endif %}
+       {%- do postman.pkg.archive.update({ 'name': postman.config.path, 'source': uri }) %}
 {%- endif %}
